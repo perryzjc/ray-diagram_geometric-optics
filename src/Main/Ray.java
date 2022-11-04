@@ -55,7 +55,7 @@ public class Ray {
 
     public void draw(boolean isAnimated) {
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setPenRadius(0.005);
+        StdDraw.setPenRadius(0.002);
         if (isAnimated) {
             int steps = (int) moveInterval;
             int actualInterval = actualInterval();

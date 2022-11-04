@@ -25,8 +25,6 @@ public abstract class Objects {
     protected void draw() {
         StdDraw.setPenColor(color);
         StdDraw.setPenRadius(0.010);
-        double drawX = loc.drawX();
-        double drawY = loc.drawY();
         StdDraw.line(loc.drawX(), loc.drawY(), loc.drawX(), Screen.yAxis);
     }
 }

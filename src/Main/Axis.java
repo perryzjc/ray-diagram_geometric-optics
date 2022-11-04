@@ -2,8 +2,6 @@ package Main;
 
 import edu.princeton.cs.algs4.StdDraw;
 
-import java.awt.*;
-
 public class Axis extends Objects{
 
     /**
