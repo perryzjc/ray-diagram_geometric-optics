@@ -21,6 +21,7 @@ public class LightingObject extends OpticalObjects {
         ray.draw(true);
         LightingObject newObj = ray.formNewObject();
         if (newObj != null) {
+            newObj.draw();
             newObj.sendRay(objects);
         }
     }
