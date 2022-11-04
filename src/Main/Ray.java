@@ -4,8 +4,8 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
 
 public class Ray {
-    private Point start;
-    private Point end;
+    private Pos start;
+    private Pos end;
     private double dx;
     private double dy;
     private double length;
@@ -18,15 +18,15 @@ public class Ray {
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setXscale(0, 500);
         StdDraw.setYscale(0, 500);
-        Ray ray = new Ray(new Point(0, 0), new Point(200, 300));
+        Ray ray = new Ray(new Pos(0, 0), new Pos(200, 200));
         ray.draw(true);
     }
 
-    public Ray(Point start, Point end) {
+    public Ray(Pos start, Pos end) {
         this.start = start;
         this.end = end;
-        this.dx = end.getX() - start.getX();
-        this.dy = end.getY() - start.getY();
+        this.dx = end.x() - start.x();
+        this.dy = end.y() - start.y();
         length = Math.sqrt(dx * dx + dy * dy);
         paceX = Screen.WIDTH / Screen.INTERVALS;
         paceY = Screen.HEIGHT / Screen.INTERVALS;
@@ -59,13 +59,11 @@ public class Ray {
         if (isAnimated) {
             int steps = (int) moveInterval;
             for (int i = 0; i < steps; i++) {
-                System.out.println("current x: " + start.getX() + paceX * i);
-                System.out.println("current y: " + start.getY() + paceY * i);
-                StdDraw.line(start.getX(), start.getY(), start.getX() + paceX * i, start.getY() + paceY * i);
+                StdDraw.line(start.drawX(), start.drawY(), start.drawX() + paceX * i, start.drawY() + paceY * i);
                 StdDraw.pause(timeInterval);
             }
         } else {
-            StdDraw.line(start.x, start.y, end.x, end.y);
+            StdDraw.line(start.drawX(), start.drawY(), end.drawX(), end.drawY());
         }
     }
 }

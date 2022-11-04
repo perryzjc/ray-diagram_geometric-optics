@@ -1,5 +1,5 @@
 package Main;
 
-public class Image extends Drawable {
+public class Image extends Objects {
 
 }

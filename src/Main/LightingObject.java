@@ -1,4 +1,4 @@
 package Main;
 
-public class LightingObject extends Drawable {
+public class LightingObject extends Objects {
 }
