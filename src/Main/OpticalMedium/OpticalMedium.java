@@ -27,5 +27,13 @@ public abstract class OpticalMedium extends OpticalObjects {
         StdDraw.line(loc.drawX(), Screen.yAxis, loc.drawX(), Screen.yAxis - yOffAxis);
     }
 
+    public Pos rightFocalPoint() {
+        return new Pos(loc.x() + focalLength, loc.y());
+    }
+
+    public Pos leftFocalPoint() {
+        return new Pos(loc.x() - focalLength, loc.y());
+    }
+
     protected abstract Image reflect(LightingObject lightObj);
 }
