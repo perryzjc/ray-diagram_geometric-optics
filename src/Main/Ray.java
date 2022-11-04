@@ -16,9 +16,7 @@ public class Ray {
     private double paceY;
 
     public static void main(String[] args) {
-        StdDraw.setCanvasSize(Screen.WIDTH, Screen.HEIGHT);
-        StdDraw.setXscale(0, 500);
-        StdDraw.setYscale(0, 500);
+        Screen.init();
         Ray ray = new Ray(new Pos(0, 0), new Pos(0, 100));
         ray.draw(true);
     }
