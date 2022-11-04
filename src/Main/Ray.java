@@ -71,7 +71,7 @@ public class Ray {
 
     public void draw(boolean isAnimated) {
         StdDraw.setPenColor(Color.RED);
-        StdDraw.setPenRadius(0.002);
+        StdDraw.setPenRadius(0.001);
         if (isAnimated) {
             int steps = (int) moveInterval + 1;
             int actualInterval = actualInterval();
@@ -127,6 +127,36 @@ public class Ray {
         Ray ray2 = new Ray(start, medium.origin());
         ray1.draw(true);
         ray2.draw(true);
+        Pos intersection = extend2RaysToFindIntersection(ray1, ray2);
+        Ray ray3 = new Ray(ray1.end, intersection);
+        Ray ray4 = new Ray(ray2.end, intersection);
+        ray3.draw(true);
+        ray4.draw(true);
         return null;
+    }
+
+    /**
+     * 3 cases:
+     * 1. extend to find a pos for real image
+     * 2. reversely extend to find a pos for virtual image
+     * 3. two rays are parallel, can not find its intersection
+     */
+    public Pos extend2RaysToFindIntersection(Ray ray1, Ray ray2) {
+        double k1 = ray1.dy / ray1.dx;
+        double k2 = ray2.dy / ray2.dx;
+        if (Math.abs(k1 - k2) < 0.0001) {
+            return null;
+        }
+        double x = (k1 * ray1.start.x() - k2 * ray2.start.x() + ray2.start.y() - ray1.start.y()) / (k1 - k2);
+        double y = k1 * (x - ray1.start.x()) + ray1.start.y();
+        return new Pos(x, y);
+    }
+
+    public double dx() {
+        return dx;
+    }
+
+    public double dy() {
+        return dy;
     }
 }
