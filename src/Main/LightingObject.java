@@ -16,5 +16,6 @@ public class LightingObject extends OpticalObjects {
     public void sendRay(ArrayList<OpticalObjects> objects) {
         Ray ray = new Ray(loc, objects);
         ray.draw(true);
+        ray.formNewObject();
     }
 }

@@ -10,7 +10,7 @@ import java.awt.*;
  * the position of the optical medium is the position of  optical center
  */
 public abstract class OpticalMedium extends OpticalObjects {
-    protected double focalLength;
+    protected double focalLength = 20;
 
     public OpticalMedium(Pos pos, Color color) {
         super(pos, color);

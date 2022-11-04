@@ -1,5 +1,6 @@
 package Main;
 
+import Main.OpticalMedium.OpticalMedium;
 import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
 import java.util.ArrayList;
@@ -100,6 +101,7 @@ public class Ray {
         //todo: currently only find the right closest obj
         for (OpticalObjects obj : objs) {
             if (obj.loc.x() > start.x()) {
+                firstTouchedObj = obj;
                 return obj;
             }
         }
@@ -109,5 +111,20 @@ public class Ray {
     Pos touchedPos(OpticalObjects obj) {
         //todo: currently only find the horizontally pos of the obj
         return new Pos(obj.loc.x(), start.y());
+    }
+
+    public OpticalObjects formNewObject() {
+        //todo: currently only return a new object at right side of the first touched optical medium
+        if (firstTouchedObj == null) {
+            return null;
+        }
+        if (!(firstTouchedObj instanceof OpticalMedium)) {
+            return null;
+        }
+        OpticalMedium medium = (OpticalMedium) firstTouchedObj;
+        Pos touchedPos = touchedPos(medium);
+        Ray ray1 = new Ray(touchedPos, ((OpticalMedium) firstTouchedObj).rightFocalPoint());
+        ray1.draw(true);
+        return null;
     }
 }

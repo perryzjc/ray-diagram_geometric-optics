@@ -15,6 +15,7 @@ public class Screen {
     public static final double yAxis = (double) HEIGHT / 3;
     public static final Pos offPosOfAxis = new Pos(0, Screen.yAxis);
     private ArrayList<OpticalObjects> objects;
+    private Axis axis;
 
     public static void init() {
         StdDraw.setCanvasSize(Screen.WIDTH, Screen.HEIGHT);
@@ -36,7 +37,7 @@ public class Screen {
 
     public Screen() {
         objects = new ArrayList<>();
-        objects.add(new Axis());
+        axis = new Axis();
     }
 
     public void add(OpticalObjects obj) {
@@ -53,6 +54,7 @@ public class Screen {
     }
 
     public void run() {
+        axis.draw();
         for (OpticalObjects obj : objects) {
             obj.draw();
         }
