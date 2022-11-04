@@ -2,6 +2,8 @@ package Main;
 
 import Main.OpticalMedium.Lens.ConcaveLens;
 import Main.OpticalMedium.Lens.ConvexLens;
+import Main.OpticalMedium.Mirror.PlaneMirror;
+import Main.OpticalMedium.OpticalMedium;
 import edu.princeton.cs.algs4.StdDraw;
 
 import java.awt.*;
@@ -29,9 +31,11 @@ public class Screen {
         OpticalObjects obj = new ConcaveLens(new Pos(10, 150));
         OpticalObjects obj2 = new ConvexLens(new Pos(60, 100));
         OpticalObjects obj3 = new LightingObject(new Pos(-20, 80), Color.MAGENTA);
+        OpticalMedium obj4 = new PlaneMirror(new Pos(300, 210), Color.pink);
         screen.add(obj);
         screen.add(obj2);
         screen.add(obj3);
+        screen.add(obj4);
         screen.run();
     }
 
