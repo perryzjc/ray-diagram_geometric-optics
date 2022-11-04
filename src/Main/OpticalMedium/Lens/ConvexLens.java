@@ -1,9 +1,9 @@
-package Main.OpticalMedium.Mirror;
+package Main.OpticalMedium.Lens;
 
 import Main.Image;
 import Main.LightingObject;
 
-public class Plane extends Mirror {
+public class ConvexLens extends Lens {
 
     @Override
     protected Image reflect(LightingObject lightObj) {

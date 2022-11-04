@@ -18,7 +18,7 @@ public class Ray {
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setXscale(0, 500);
         StdDraw.setYscale(0, 500);
-        Ray ray = new Ray(new Point(0, 0), new Point(400, 400));
+        Ray ray = new Ray(new Point(0, 0), new Point(200, 300));
         ray.draw(true);
     }
 
