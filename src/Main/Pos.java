@@ -34,6 +34,10 @@ public class Pos {
         return y;
     }
 
+    public double yAbs() {
+        return Math.abs(y);
+    }
+
     /**
      * @return the absolute x
      */

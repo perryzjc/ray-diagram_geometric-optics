@@ -106,7 +106,7 @@ public class Ray {
     OpticalObjects calcFirstTouchedObj(ArrayList<OpticalObjects> objs) {
         //todo: currently only find the right closest obj
         for (OpticalObjects obj : objs) {
-            if (obj.loc.x() > start.x()) {
+            if (obj.loc.x() > start.x() && start.y() < obj.loc.yAbs()) {
                 firstTouchedObj = obj;
                 return obj;
             }

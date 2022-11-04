@@ -31,11 +31,13 @@ public class Screen {
         OpticalObjects obj = new ConcaveLens(new Pos(10, 150));
         OpticalObjects obj2 = new ConvexLens(new Pos(60, 100));
         OpticalObjects obj3 = new LightingObject(new Pos(-20, 80), Color.MAGENTA);
-        OpticalMedium obj4 = new PlaneMirror(new Pos(300, 210), Color.pink);
+        OpticalObjects obj5 = new LightingObject(new Pos(-200, 100), Color.GREEN);
+        OpticalMedium obj4 = new PlaneMirror(new Pos(300, 300), Color.pink);
         screen.add(obj);
         screen.add(obj2);
         screen.add(obj3);
         screen.add(obj4);
+        screen.add(obj5);
         screen.run();
     }
 
