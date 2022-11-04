@@ -26,9 +26,9 @@ public class Screen {
     public static void main(String[] args) {
         Screen.init();
         Screen screen = new Screen();
-        OpticalObjects obj = new ConcaveLens(new Pos(0, 80));
-        OpticalObjects obj2 = new ConvexLens(new Pos(50, 100));
-        OpticalObjects obj3 = new LightingObject(new Pos(-20, 20), Color.MAGENTA);
+        OpticalObjects obj = new ConcaveLens(new Pos(10, 150));
+        OpticalObjects obj2 = new ConvexLens(new Pos(60, 100));
+        OpticalObjects obj3 = new LightingObject(new Pos(-20, 80), Color.MAGENTA);
         screen.add(obj);
         screen.add(obj2);
         screen.add(obj3);
