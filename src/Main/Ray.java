@@ -2,6 +2,7 @@ package Main;
 
 import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
+import java.util.List;
 
 public class Ray {
     private Pos start;
@@ -14,6 +15,7 @@ public class Ray {
     private double moveInterval;
     private double paceX;
     private double paceY;
+    private Objects firstTouchObj;
 
     public static void main(String[] args) {
         Screen.init();
@@ -21,14 +23,26 @@ public class Ray {
         ray.draw(true);
     }
 
+    public Ray(Pos start, List<Objects> objects) {
+        this.start = start;
+        this.end = touchedPos(calcFirstTouchedObject(objects));
+        this.dx = end.x() - start.x();
+        this.dy = end.y() - start.y();
+        defaultSet();
+    }
+
     public Ray(Pos start, Pos end) {
         this.start = start;
         this.end = end;
         this.dx = end.x() - start.x();
         this.dy = end.y() - start.y();
+        defaultSet();
+    }
+
+    public void defaultSet() {
         length = Math.sqrt(dx * dx + dy * dy);
-        paceX = Screen.WIDTH / Screen.INTERVALS;
-        paceY = Screen.HEIGHT / Screen.INTERVALS;
+        paceX = (double)Screen.WIDTH / Screen.INTERVALS;
+        paceY = (double)Screen.HEIGHT / Screen.INTERVALS;
         slowScale = 3;
         setTimeInterval();
         setMoveInterval(timeInterval);
@@ -57,16 +71,19 @@ public class Ray {
         StdDraw.setPenColor(Color.RED);
         StdDraw.setPenRadius(0.002);
         if (isAnimated) {
-            int steps = (int) moveInterval;
+            int steps = (int) moveInterval + 1;
             int actualInterval = actualInterval();
-            for (int i = 0; i < steps + 1; i++) {
+            for (int i = 0; i < steps; i++) {
                 System.out.println("drawX: " + (start.x() + paceX * i) + " drawY: " + (start.y() + paceY * i));
                 StdDraw.line(start.drawX(), start.drawY(), start.drawX() + paceX * i, start.drawY() + paceY * i);
                 StdDraw.pause(actualInterval);
             }
-        } else {
-            StdDraw.line(start.drawX(), start.drawY(), end.drawX(), end.drawY());
         }
+        drawToEnd();
+    }
+
+    private void drawToEnd() {
+        StdDraw.line(start.drawX(), start.drawY(), end.drawX(), end.drawY());
     }
 
     private int actualInterval() {
@@ -76,5 +93,26 @@ public class Ray {
         } else {
             return (int) temp;
         }
+    }
+
+    /**
+     * @param objects, a sorted list based on the x of location
+     */
+    private Objects calcFirstTouchedObject(List<Objects> objects) {
+        //TODO: current only find the object right after the start point
+        for (Objects obj : objects) {
+            if (obj.loc.x() > start.x()) {
+                firstTouchObj = obj;
+                break;
+            }
+        }
+        return firstTouchObj;
+    }
+
+    public Pos touchedPos(Objects obj) {
+        //TODO: current ray only move right horizontally
+        double x = obj.loc.x();
+        double y = start.y();
+        return new Pos(x, y);
     }
 }

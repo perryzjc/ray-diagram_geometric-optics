@@ -13,8 +13,8 @@ public class LightingObject extends Objects {
         super.draw();
     }
 
-    public void sendRay() {
-        Ray ray = new Ray(loc, loc.add(new Pos(100, 0)));
+    public void sendRay(List<Objects> objects) {
+        Ray ray = new Ray(loc, objects);
         ray.draw(true);
     }
 }

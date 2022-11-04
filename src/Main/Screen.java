@@ -63,7 +63,7 @@ public class Screen {
     public void activateRays() {
         for (Objects obj : objects) {
             if (obj instanceof LightingObject) {
-                ((LightingObject) obj).sendRay();
+                ((LightingObject) obj).sendRay(objects);
             }
         }
     }
