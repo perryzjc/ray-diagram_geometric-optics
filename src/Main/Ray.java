@@ -19,6 +19,7 @@ public class Ray {
     private double moveInterval;
     private double paceX;
     private double paceY;
+    private boolean continuable;
 
     public static void main(String[] args) {
         Screen.init();
@@ -29,6 +30,10 @@ public class Ray {
     public Ray(Pos start, ArrayList<OpticalObjects> objects) {
         this.start = start;
         firstTouchedObj = calcFirstTouchedObj(objects);
+        if (firstTouchedObj == null) {
+            continuable = false;
+            return;
+        }
         end = touchedPos(firstTouchedObj);
         defaultSet();
     }
@@ -48,6 +53,7 @@ public class Ray {
         slowScale = 3;
         setTimeInterval();
         setMoveInterval(timeInterval);
+        continuable = true;
     }
 
     void setTimeInterval() {
@@ -113,7 +119,7 @@ public class Ray {
         return new Pos(obj.loc.x(), start.y());
     }
 
-    public OpticalObjects formNewObject() {
+    public LightingObject formNewObject() {
         //todo: currently only return a new object at right side of the first touched optical medium
         if (firstTouchedObj == null) {
             return null;
@@ -132,7 +138,8 @@ public class Ray {
         Ray ray4 = new Ray(ray2.end, intersection);
         ray3.draw(true);
         ray4.draw(true);
-        return null;
+
+        return new LightingObject(intersection, Color.orange);
     }
 
     /**
@@ -158,5 +165,9 @@ public class Ray {
 
     public double dy() {
         return dy;
+    }
+
+    public boolean continuable() {
+        return continuable;
     }
 }
