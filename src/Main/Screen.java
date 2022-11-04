@@ -7,7 +7,7 @@ public class Screen {
     public static final int HEIGHT = 600;
     public static final int INTERVALS = 1000;
     public static final double xAxis = (double) WIDTH / 2;
-    public static final double yAxis = (double) HEIGHT / 2;
+    public static final double yAxis = (double) HEIGHT / 3;
     public static final Pos offPosOfAxis = new Pos(0, Screen.yAxis);
     private ArrayList<Objects> objects;
 

@@ -1,6 +1,7 @@
 package Test;
 
 import Main.Pos;
+import Main.Screen;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -16,8 +17,8 @@ public class PosTest {
     @Test
     public void testAbsolutePos() {
         Pos p = new Pos(1, 2);
-        assertEquals(401, p.drawX(), 0.0001);
-        assertEquals(302, p.drawY(), 0.0001);
+        assertEquals(Screen.xAxis + 1, p.drawX(), 0.0001);
+        assertEquals(Screen.yAxis + 2, p.drawY(), 0.0001);
     }
 
     @Test
