@@ -10,6 +10,7 @@ public class ConcaveLens extends Lens {
     public ConcaveLens(Pos pos) {
         super(pos, Color.BLUE);
     }
+
     @Override
     protected Image reflect(LightingObject lightObj) {
         return null;

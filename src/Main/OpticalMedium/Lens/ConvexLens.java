@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class ConvexLens extends Lens {
 
-    public ConvexLens(Pos pos, Color color) {
-        super(pos, color);
+    public ConvexLens(Pos pos) {
+        super(pos, Color.CYAN);
     }
 
     @Override

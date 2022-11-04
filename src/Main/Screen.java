@@ -1,6 +1,8 @@
 package Main;
 
 import Main.OpticalMedium.Lens.ConcaveLens;
+import Main.OpticalMedium.Lens.ConvexLens;
+import Main.OpticalMedium.Lens.PlaneLens;
 import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.ArrayList;
@@ -23,13 +25,18 @@ public class Screen {
     public static void main(String[] args) {
         Screen.init();
         Screen screen = new Screen();
-        Objects obj = new ConcaveLens(new Pos(0, 100));
+        Objects obj = new ConcaveLens(new Pos(0, 10));
+        Objects obj2 = new ConvexLens(new Pos(50, 50));
+        Objects obj3 = new PlaneLens(new Pos(-100, -30));
         screen.add(obj);
+        screen.add(obj2);
+        screen.add(obj3);
         screen.run();
     }
 
     public Screen() {
         objects = new ArrayList<>();
+        objects.add(new Axis());
     }
 
     public void add(Objects obj) {
