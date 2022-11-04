@@ -123,8 +123,10 @@ public class Ray {
         }
         OpticalMedium medium = (OpticalMedium) firstTouchedObj;
         Pos touchedPos = touchedPos(medium);
-        Ray ray1 = new Ray(touchedPos, ((OpticalMedium) firstTouchedObj).rightFocalPoint());
+        Ray ray1 = new Ray(touchedPos, medium.rightFocalPoint());
+        Ray ray2 = new Ray(start, medium.origin());
         ray1.draw(true);
+        ray2.draw(true);
         return null;
     }
 }
