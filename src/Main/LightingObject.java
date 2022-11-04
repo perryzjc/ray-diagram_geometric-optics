@@ -1,6 +1,7 @@
 package Main;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class LightingObject extends OpticalObjects {
     public LightingObject(Pos location, Color color) {
@@ -12,8 +13,8 @@ public class LightingObject extends OpticalObjects {
         super.draw();
     }
 
-    public void sendRay() {
-        Ray ray = new Ray(loc, loc.add(new Pos(100, 0)));
+    public void sendRay(ArrayList<OpticalObjects> objects) {
+        Ray ray = new Ray(loc, objects);
         ray.draw(true);
     }
 }

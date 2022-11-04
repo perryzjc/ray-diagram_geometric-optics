@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
 import java.util.ArrayList;
 
+import java.util.List;
+
 public class Ray {
     private Pos start;
     private Pos end;
@@ -27,23 +29,21 @@ public class Ray {
         this.start = start;
         firstTouchedObj = calcFirstTouchedObj(objects);
         end = touchedPos(firstTouchedObj);
-        this.dx = end.x() - start.x();
-        this.dy = end.y() - start.y();
         defaultSet();
     }
 
     public Ray(Pos start, Pos end) {
         this.start = start;
         this.end = end;
-        this.dx = end.x() - start.x();
-        this.dy = end.y() - start.y();
         defaultSet();
     }
 
     public void defaultSet() {
+        this.dx = end.x() - start.x();
+        this.dy = end.y() - start.y();
         length = Math.sqrt(dx * dx + dy * dy);
-        paceX = Screen.WIDTH / Screen.INTERVALS;
-        paceY = Screen.HEIGHT / Screen.INTERVALS;
+        paceX = (double)Screen.WIDTH / Screen.INTERVALS;
+        paceY = (double)Screen.HEIGHT / Screen.INTERVALS;
         slowScale = 3;
         setTimeInterval();
         setMoveInterval(timeInterval);
@@ -72,16 +72,19 @@ public class Ray {
         StdDraw.setPenColor(Color.RED);
         StdDraw.setPenRadius(0.002);
         if (isAnimated) {
-            int steps = (int) moveInterval;
+            int steps = (int) moveInterval + 1;
             int actualInterval = actualInterval();
-            for (int i = 0; i < steps + 1; i++) {
+            for (int i = 0; i < steps; i++) {
                 System.out.println("drawX: " + (start.x() + paceX * i) + " drawY: " + (start.y() + paceY * i));
                 StdDraw.line(start.drawX(), start.drawY(), start.drawX() + paceX * i, start.drawY() + paceY * i);
                 StdDraw.pause(actualInterval);
             }
-        } else {
-            StdDraw.line(start.drawX(), start.drawY(), end.drawX(), end.drawY());
         }
+        drawToEnd();
+    }
+
+    private void drawToEnd() {
+        StdDraw.line(start.drawX(), start.drawY(), end.drawX(), end.drawY());
     }
 
     private int actualInterval() {
