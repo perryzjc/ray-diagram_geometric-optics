@@ -2,6 +2,7 @@ package Main;
 
 import edu.princeton.cs.algs4.StdDraw;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Ray {
     private Pos start;
@@ -10,6 +11,7 @@ public class Ray {
     private double dy;
     private double length;
     private int timeInterval;
+    private OpticalObjects firstTouchedObj;
     private double slowScale;
     private double moveInterval;
     private double paceX;
@@ -21,11 +23,24 @@ public class Ray {
         ray.draw(true);
     }
 
+    public Ray(Pos start, ArrayList<OpticalObjects> objects) {
+        this.start = start;
+        firstTouchedObj = calcFirstTouchedObj(objects);
+        end = touchedPos(firstTouchedObj);
+        this.dx = end.x() - start.x();
+        this.dy = end.y() - start.y();
+        defaultSet();
+    }
+
     public Ray(Pos start, Pos end) {
         this.start = start;
         this.end = end;
         this.dx = end.x() - start.x();
         this.dy = end.y() - start.y();
+        defaultSet();
+    }
+
+    public void defaultSet() {
         length = Math.sqrt(dx * dx + dy * dy);
         paceX = Screen.WIDTH / Screen.INTERVALS;
         paceY = Screen.HEIGHT / Screen.INTERVALS;
@@ -76,5 +91,20 @@ public class Ray {
         } else {
             return (int) temp;
         }
+    }
+
+    OpticalObjects calcFirstTouchedObj(ArrayList<OpticalObjects> objs) {
+        //todo: currently only find the right closest obj
+        for (OpticalObjects obj : objs) {
+            if (obj.loc.x() > start.x()) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    Pos touchedPos(OpticalObjects obj) {
+        //todo: currently only find the horizontally pos of the obj
+        return new Pos(obj.loc.x(), start.y());
     }
 }

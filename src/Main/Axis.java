@@ -2,7 +2,7 @@ package Main;
 
 import edu.princeton.cs.algs4.StdDraw;
 
-public class Axis extends Objects{
+public class Axis extends OpticalObjects {
 
     /**
      * the other pos of other pos is relative to this Axis

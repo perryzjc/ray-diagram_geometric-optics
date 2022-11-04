@@ -2,7 +2,6 @@ package Main;
 
 import Main.OpticalMedium.Lens.ConcaveLens;
 import Main.OpticalMedium.Lens.ConvexLens;
-import Main.OpticalMedium.Lens.PlaneLens;
 import edu.princeton.cs.algs4.StdDraw;
 
 import java.awt.*;
@@ -15,7 +14,7 @@ public class Screen {
     public static final double xAxis = (double) WIDTH / 2;
     public static final double yAxis = (double) HEIGHT / 3;
     public static final Pos offPosOfAxis = new Pos(0, Screen.yAxis);
-    private ArrayList<Objects> objects;
+    private ArrayList<OpticalObjects> objects;
 
     public static void init() {
         StdDraw.setCanvasSize(Screen.WIDTH, Screen.HEIGHT);
@@ -26,9 +25,9 @@ public class Screen {
     public static void main(String[] args) {
         Screen.init();
         Screen screen = new Screen();
-        Objects obj = new ConcaveLens(new Pos(0, 80));
-        Objects obj2 = new ConvexLens(new Pos(50, 50));
-        Objects obj3 = new LightingObject(new Pos(-50, 20), Color.MAGENTA);
+        OpticalObjects obj = new ConcaveLens(new Pos(0, 80));
+        OpticalObjects obj2 = new ConvexLens(new Pos(50, 50));
+        OpticalObjects obj3 = new LightingObject(new Pos(-50, 20), Color.MAGENTA);
         screen.add(obj);
         screen.add(obj2);
         screen.add(obj3);
@@ -40,7 +39,7 @@ public class Screen {
         objects.add(new Axis());
     }
 
-    public void add(Objects obj) {
+    public void add(OpticalObjects obj) {
         objects.add(obj);
         objects.sort((o1, o2) -> {
             if (o1.loc.x() > o2.loc.x()) {
@@ -54,14 +53,14 @@ public class Screen {
     }
 
     public void run() {
-        for (Objects obj : objects) {
+        for (OpticalObjects obj : objects) {
             obj.draw();
         }
         activateRays();
     }
 
     public void activateRays() {
-        for (Objects obj : objects) {
+        for (OpticalObjects obj : objects) {
             if (obj instanceof LightingObject) {
                 ((LightingObject) obj).sendRay();
             }

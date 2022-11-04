@@ -1,5 +1,5 @@
 package Main;
 
-public class Image extends Objects {
+public class Image extends OpticalObjects {
 
 }

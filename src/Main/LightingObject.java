@@ -1,9 +1,8 @@
 package Main;
 
 import java.awt.*;
-import java.util.List;
 
-public class LightingObject extends Objects {
+public class LightingObject extends OpticalObjects {
     public LightingObject(Pos location, Color color) {
         super(location, color);
     }

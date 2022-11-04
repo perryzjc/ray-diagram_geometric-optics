@@ -4,16 +4,16 @@ import edu.princeton.cs.algs4.StdDraw;
 
 import java.awt.*;
 
-public abstract class Objects {
+public abstract class OpticalObjects {
     protected Pos loc;
     protected Color color;
 
-    public Objects() {
+    public OpticalObjects() {
         loc = new Pos(0, 0);
         color = Color.BLACK;
     }
 
-    public Objects(Pos location, Color color) {
+    public OpticalObjects(Pos location, Color color) {
         this.loc = location;
         this.color = color;
     }
