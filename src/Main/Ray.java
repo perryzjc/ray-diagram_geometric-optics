@@ -15,10 +15,10 @@ public class Ray {
     private double paceY;
 
     public static void main(String[] args) {
-        StdDraw.setCanvasSize(500, 500);
+        StdDraw.setCanvasSize(Screen.WIDTH, Screen.HEIGHT);
         StdDraw.setXscale(0, 500);
         StdDraw.setYscale(0, 500);
-        Ray ray = new Ray(new Pos(0, 0), new Pos(200, 200));
+        Ray ray = new Ray(new Pos(0, 100), new Pos(0, 0));
         ray.draw(true);
     }
 
@@ -58,7 +58,7 @@ public class Ray {
         StdDraw.setPenRadius(0.005);
         if (isAnimated) {
             int steps = (int) moveInterval;
-            for (int i = 0; i < steps; i++) {
+            for (int i = 0; i < steps + 1; i++) {
                 StdDraw.line(start.drawX(), start.drawY(), start.drawX() + paceX * i, start.drawY() + paceY * i);
                 StdDraw.pause(timeInterval);
             }
